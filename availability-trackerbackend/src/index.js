@@ -14,18 +14,24 @@ const PORT = process.env.PORT || 5001;
 
 const allowedOrigins = [
   "https://availabilitytrackerfrontend.vercel.app",
+  "https://meeting-schedular-6txl.vercel.app",
   "http://localhost:3000",
   "http://localhost:5173",
   "http://localhost:5174",
-  
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
