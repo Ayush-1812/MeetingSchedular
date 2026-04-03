@@ -17,6 +17,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
   "http://localhost:5174",
+  
 ];
 
 app.use(
@@ -48,3 +49,5 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+export default app;
