@@ -48,6 +48,7 @@ app.use("/api/meetings", meetingRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.get("/health", (_, res) => res.json({ ok: true }));
+app.get("/", (_, res) => res.send("Welcome to the MentorQue Backend API! 🚀 The server is perfectly online."));
 
 
 app.use(errorHandler);
